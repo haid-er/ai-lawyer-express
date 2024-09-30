@@ -1,0 +1,18 @@
+// ping call for server
+
+GET http://localhost:3000/api/ping
+
+
+
+// register request to server
+###
+POST http://localhost:3000/api/auth/register
+content-type: application/json
+
+{
+    "firstName": "Malik",
+    "lastName" : "Haider",
+    "email": "mh@gmail.com",
+    "nickName": "malik",
+    "password": "aA!12345"
+}
