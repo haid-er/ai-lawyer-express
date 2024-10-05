@@ -1,21 +1,43 @@
-const compareHash = require("../utils/compareHash");
+const { User } = require("../models/index")
 const generateHash = require("../utils/generateHash");
-const User = require("../models/user.model")
-const registerController = async (req, res) => {
-    const { firstName, lastName, email, nickName, password } = req.body;
-    const hashedPassword = await generateHash(password);
-    const comparison = await compareHash(password, hashedPassword);
-    console.log(User)
-    res.json({
-        firstName,
-        lastName,
-        lastName,
-        email,
-        nickName,
-        password,
-        hashedPassword,
-        comparison
-    })
+const userModel = require("../models/user.model");
+const registerController = async (req, res, next) => {
+    const { firstName, lastName, nickName, password, phone } = req.body;
+    const email = req.body.email.toLowerCase();
+    try {
+        const userAlreadyExist = await User.findOne({
+            where: {
+                email,
+            }
+        })
+        if (userAlreadyExist) {
+            res.status(409).json({
+                status: 'error',
+                message: "Email Already Registered!",
+            })
+            return;
+        }
+        const username = await User.generateUsername(firstName, lastName);
+        console.log(username)
+        const passwordHash = await generateHash(password);
+        const createdUser = User.create({
+            firstName,
+            lastName,
+            phone,
+            nickName,
+            email,
+            username,
+            password: passwordHash,
+
+
+        });
+        return res.status(200).json({
+            status: 'success',
+            message: "User Registered Successfully",
+        })
+    } catch (error) {
+        next(error)
+    }
 }
 
 module.exports = registerController;

@@ -22,9 +22,9 @@ const registerValidator = [
     check('nickName')
         .trim()
         .isLength({ max: 10 })
-        .withMessage('Enity Name must be less than 10 characters')
+        .withMessage('NickName must be less than 10 characters')
         .matches(/^[a-zA-ZÀ-ÿ0-9\s,.'&-]*$/)
-        .withMessage('Enity Name contains invalid characters'),
+        .withMessage('NickName contains invalid characters'),
 
     check('email')
         .trim()
@@ -52,7 +52,14 @@ const registerValidator = [
         .matches(/[@$!%*?&#]/)
         .withMessage('Password must contain at least one special character'),
 
-    // Handle validation results
+    check('phone')
+        .trim()
+        .optional()
+        .isLength({ min: 10, max: 15 })
+        .withMessage('Phone number must be between 10 and 15 digits')
+        .matches(/^[+\d\s()-]*$/)
+        .withMessage('Phone number contains invalid characters'),
+
     (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
