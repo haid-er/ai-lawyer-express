@@ -31,4 +31,16 @@ content-type: application/json
 ###
 GET http://localhost:3000/api/auth/me
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoibWhAZ21haWwuY29tIiwiaWF0IjoxNzI4MDQxMjkxLCJleHAiOjE3MjgxMjc2OTF9.SuT6VbjiGrYzTQfFQL_sU8ujbGHObeU4V5t3P52lf-I
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoibWhAZ21haWwuY29tIiwiaWF0IjoxNzI4NzM4MzA1LCJleHAiOjE3Mjg4MjQ3MDV9.q9mHconSp0VygGkEbWMT4An0VQzKy_7E7wgbcCykHmk
+
+
+
+
+###
+POST http://localhost:3000/api/user/chat
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoibWhAZ21haWwuY29tIiwiaWF0IjoxNzI5NDM4MzQxLCJleHAiOjE3Mjk1MjQ3NDF9.zfun0ivGz7oOpQ90AX_8iZY6qquGquicgKneR-HIvF8
+
+{
+    "message":"Are you boy"
+}
